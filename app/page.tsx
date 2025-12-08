@@ -67,8 +67,13 @@ export default function Home() {
 
   const handleRandomPet = () => {
     const petData = randompet();
-    setPetName(petData.name);
     const imgPath = `/img/pet/${petData.number}.webp`;
+    
+    // 이미지 프리로드
+    const img = new window.Image();
+    img.src = imgPath;
+    
+    setPetName(petData.name);
     setPetimg(imgPath);
     // "미정"이 아닌 경우에만 리롤 차감 (리롤)
     if (!petName.endsWith("미정")) {
@@ -190,7 +195,7 @@ export default function Home() {
           <div className="text-xl font-bold">선달</div>
           <div id="cookieimg1" className="w-32 h-32 rounded-lg flex items-center justify-center overflow-hidden">
             {cookieimg1.endsWith('.webp') ? (
-              <Image src={cookieimg1} alt="쿠키 이미지" width={128} height={128} className="w-full h-full object-contain" />
+              <Image src={cookieimg1} alt="쿠키 이미지" width={128} height={128} className="w-full h-full object-contain" unoptimized />
             ) : (
               <span>{cookieimg1}</span>
             )}
@@ -206,7 +211,7 @@ export default function Home() {
           <div className="text-xl font-bold">이달</div>
           <div id="cookieimg2" className="w-32 h-32 rounded-lg flex items-center justify-center overflow-hidden">
             {cookieimg2.endsWith('.webp') ? (
-              <Image src={cookieimg2} alt="쿠키 이미지" width={128} height={128} className="w-full h-full object-contain" />
+              <Image src={cookieimg2} alt="쿠키 이미지" width={128} height={128} className="w-full h-full object-contain" unoptimized />
             ) : (
               <span>{cookieimg2}</span>
             )}
@@ -222,7 +227,7 @@ export default function Home() {
           <div className="text-xl font-bold">펫</div>
           <div id="petimg" className="w-32 h-32 rounded-lg flex items-center justify-center">
             {petimg.endsWith('.webp') ? (
-              <Image src={petimg} alt="펫 이미지" width={96} height={96} className="object-contain" style={{ width: "auto", height: "auto" }} />
+              <Image src={petimg} alt="펫 이미지" width={128} height={128} className="w-full h-full object-contain" unoptimized priority />
             ) : (
               <span>{petimg}</span>
             )}
@@ -238,7 +243,7 @@ export default function Home() {
           <div className="text-xl font-bold">에피소드</div>
           <div id="episodeimg" className="w-32 h-32  rounded-lg flex items-center justify-center">
             {episodeimg.endsWith('.webp') ? (
-              <Image src={episodeimg} alt="에피소드 이미지" width={96} height={96} className="object-contain" style={{ width: "auto", height: "auto" }} />
+              <Image src={episodeimg} alt="에피소드 이미지" width={96} height={96} className="object-contain" style={{ width: "auto", height: "auto" }} unoptimized />
             ) : (
               <span>{episodeimg}</span>
             )}
