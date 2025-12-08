@@ -9,7 +9,8 @@ export default function PreloadImages() {
     const episodeImages = Array.from({ length: 6 }, (_, i) => `/img/episode/${i}.webp`);
 
     
-    const allImages = [...cookieImages, ...petImages, ...episodeImages];
+        const allImages = [...petImages,...cookieImages,  ...episodeImages];
+
 
     return (
         <>
@@ -19,3 +20,4 @@ export default function PreloadImages() {
         </>
     );
 }
+
