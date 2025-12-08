@@ -257,23 +257,6 @@ export default function Home() {
         {/* 리롤 카운터 */}
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-4">
-            <label htmlFor="rerollInput" className="text-xl font-bold">리롤 횟수:</label>
-            <input
-              id="rerollInput"
-              type="number"
-              value={inputReroll}
-              onChange={(e) => {
-                setInputReroll(e.target.value);
-                const num = parseInt(e.target.value);
-                if (!isNaN(num) && num >= 0) {
-                  setRerollCount(num);
-                }
-              }}
-              className="w-24 px-3 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500"
-              min="0"
-            />
-          </div>
-          <div className="flex items-center gap-4">
             <label htmlFor="remainingRerollInput" className="text-xl font-bold text-blue-400">남은 리롤:</label>
             <input
               id="remainingRerollInput"
