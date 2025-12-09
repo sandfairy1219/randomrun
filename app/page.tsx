@@ -335,7 +335,7 @@ export default function Home() {
 
       {/* 기록창 */}
       <div
-        className="flex flex-col border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl gap-4 overflow-auto aspect-[4/3] md:aspect-auto"
+        className="flex flex-col border-4 border-gray-200 rounded-[20px] p-10 w-[95%] md:w-[80%] max-w-6xl gap-4 overflow-auto aspect-[4/3] md:aspect-auto"
       >
         {/* Records area scaled proportionally; preserve vertical flow */}
         <div className="flex flex-col gap-4" style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}>
