@@ -16,7 +16,13 @@ export default function Home() {
       const rect = el.getBoundingClientRect();
       // Capture desktop/base size once on first measurement
       if (!baseSizeRef.current) {
-        baseSizeRef.current = { width: rect.width, height: rect.height };
+        // If loaded on desktop, use actual container size; otherwise use a sensible desktop default
+        if (window.innerWidth >= 1024) {
+          baseSizeRef.current = { width: rect.width, height: rect.height };
+        } else {
+          // Desktop default to preserve PC proportions when first loading on mobile
+          baseSizeRef.current = { width: 1024, height: 576 };
+        }
       }
       const base = baseSizeRef.current!;
       const sx = rect.width / base.width;
@@ -220,7 +226,12 @@ export default function Home() {
         {/* Scaled content wrapper: keep horizontal layout on desktop */}
         <div
           className="flex justify-center items-center gap-10"
-          style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}
+          style={{
+            width: baseSizeRef.current?.width ?? 1024,
+            height: baseSizeRef.current?.height ?? 480,
+            transform: `scale(${scale})`,
+            transformOrigin: "top left",
+          }}
         >
 
         {/* 선달 슬롯 */}
