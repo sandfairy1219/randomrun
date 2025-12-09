@@ -1,9 +1,33 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { randomcookie1, randomcookie2, randompet, randomepisode } from "./function";
 
 export default function Home() {
+  // Proportional scaling: keep PC layout, shrink uniformly on smaller screens
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [scale, setScale] = useState(1);
+  const baseSizeRef = useRef<{ width: number; height: number } | null>(null);
+
+  useEffect(() => {
+    const updateScale = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      // Capture desktop/base size once on first measurement
+      if (!baseSizeRef.current) {
+        baseSizeRef.current = { width: rect.width, height: rect.height };
+      }
+      const base = baseSizeRef.current!;
+      const sx = rect.width / base.width;
+      const sy = rect.height / base.height;
+      const s = Math.min(sx, sy);
+      setScale(s < 1 ? s : 1); // no upscaling; desktop remains unchanged
+    };
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
   const [cookieName1, setCookieName1] = useState("선달 미정");
   const [cookieimg1, setCookieimg1] = useState("/img/cookie/0.webp");
   const [cookieNumber1, setCookieNumber1] = useState<number | null>(null);
@@ -191,7 +215,13 @@ export default function Home() {
       <div
         className="flex justify-center items-center gap-10 border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl overflow-auto aspect-[16/9] md:aspect-auto"
         id="container"
+        ref={containerRef}
       >
+        {/* Scaled content wrapper: keep horizontal layout on desktop */}
+        <div
+          className="flex justify-center items-center gap-10"
+          style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}
+        >
 
         {/* 선달 슬롯 */}
         <div className="flex flex-col items-center gap-4">
@@ -289,12 +319,15 @@ export default function Home() {
             선/이달 교체
           </button>
         </div>
+        </div>
       </div>
 
       {/* 기록창 */}
       <div
         className="flex flex-col border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl gap-4 overflow-auto aspect-[4/3] md:aspect-auto"
       >
+        {/* Records area scaled proportionally; preserve vertical flow */}
+        <div className="flex flex-col gap-4" style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}>
         {/* 에피1 */}
         <div className="flex items-center gap-4">
           <h2 className="text-2xl font-bold w-24">에피1</h2>
@@ -534,6 +567,7 @@ export default function Home() {
           >
             삭제
           </button>
+        </div>
         </div>
       </div>
     </div>
