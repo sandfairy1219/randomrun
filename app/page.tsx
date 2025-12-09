@@ -7,12 +7,10 @@ export default function Home() {
   // Proportional scaling: keep PC layout, shrink uniformly on smaller screens
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const baseSizeRef = useRef<{ width: number; height: number } | null>(null);
 
   useEffect(() => {
     const updateScale = () => {
-      setIsSmallScreen(window.innerWidth < 640);
       const el = containerRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
@@ -221,17 +219,17 @@ export default function Home() {
         쿠키런 랜덤런 뽑기툴
       </h1>
       <div
-        className="flex justify-center items-center gap-4 sm:gap-10 border-2 sm:border-4 border-gray-200 rounded-[12px] sm:rounded-[20px] p-4 sm:p-10 w-[95%] sm:w-[80%] max-w-6xl overflow-auto sm:aspect-[16/9] md:aspect-auto"
+        className="flex justify-center items-center gap-4 sm:gap-10 border-2 sm:border-4 border-gray-200 rounded-[12px] sm:rounded-[20px] p-4 sm:p-10 w-[95%] sm:w-[80%] max-w-6xl overflow-auto aspect-[16/9]"
         id="container"
         ref={containerRef}
       >
         {/* Scaled content wrapper: keep horizontal layout on desktop */}
         <div
-          className="flex justify-center items-center gap-6 sm:gap-10 flex-col sm:flex-row"
+          className="flex justify-center items-center gap-6 sm:gap-10 flex-row"
           style={{
             width: baseSizeRef.current?.width ?? 1024,
             height: baseSizeRef.current?.height ?? 480,
-            transform: isSmallScreen ? "none" : `scale(${scale})`,
+            transform: `scale(${scale})`,
             transformOrigin: "top left",
           }}
         >
