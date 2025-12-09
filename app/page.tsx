@@ -188,7 +188,10 @@ export default function Home() {
       <h1 className="text-4xl font-bold text-center">
         쿠키런 랜덤런 뽑기툴
       </h1>
-      <div className="flex justify-center items-center gap-10 border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl min-h-[400px]" id="container">
+      <div
+        className="flex justify-center items-center gap-10 border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl overflow-auto aspect-[16/9] md:aspect-auto"
+        id="container"
+      >
 
         {/* 선달 슬롯 */}
         <div className="flex flex-col items-center gap-4">
@@ -289,7 +292,9 @@ export default function Home() {
       </div>
 
       {/* 기록창 */}
-      <div className="flex flex-col border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl gap-4">
+      <div
+        className="flex flex-col border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl gap-4 overflow-auto aspect-[4/3] md:aspect-auto"
+      >
         {/* 에피1 */}
         <div className="flex items-center gap-4">
           <h2 className="text-2xl font-bold w-24">에피1</h2>
