@@ -7,10 +7,12 @@ export default function Home() {
   // Proportional scaling: keep PC layout, shrink uniformly on smaller screens
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const baseSizeRef = useRef<{ width: number; height: number } | null>(null);
 
   useEffect(() => {
     const updateScale = () => {
+      setIsSmallScreen(window.innerWidth < 640);
       const el = containerRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
@@ -219,17 +221,17 @@ export default function Home() {
         쿠키런 랜덤런 뽑기툴
       </h1>
       <div
-        className="flex justify-center items-center gap-4 sm:gap-10 border-2 sm:border-4 border-gray-200 rounded-[12px] sm:rounded-[20px] p-4 sm:p-10 w-[95%] sm:w-[80%] max-w-6xl overflow-auto aspect-[16/9] md:aspect-auto"
+        className="flex justify-center items-center gap-4 sm:gap-10 border-2 sm:border-4 border-gray-200 rounded-[12px] sm:rounded-[20px] p-4 sm:p-10 w-[95%] sm:w-[80%] max-w-6xl overflow-auto sm:aspect-[16/9] md:aspect-auto"
         id="container"
         ref={containerRef}
       >
         {/* Scaled content wrapper: keep horizontal layout on desktop */}
         <div
-          className="flex justify-center items-center gap-10"
+          className="flex justify-center items-center gap-6 sm:gap-10 flex-col sm:flex-row"
           style={{
             width: baseSizeRef.current?.width ?? 1024,
             height: baseSizeRef.current?.height ?? 480,
-            transform: `scale(${scale})`,
+            transform: isSmallScreen ? "none" : `scale(${scale})`,
             transformOrigin: "top left",
           }}
         >
@@ -335,14 +337,14 @@ export default function Home() {
 
       {/* 기록창 */}
       <div
-        className="flex flex-col border-2 sm:border-4 border-gray-200 rounded-[12px] sm:rounded-[20px] p-4 sm:p-10 w-[95%] md:w-[80%] max-w-6xl gap-3 sm:gap-4 overflow-auto aspect-[4/3] md:aspect-auto"
+        className="flex flex-col border-2 sm:border-4 border-gray-200 rounded-[12px] sm:rounded-[20px] p-4 sm:p-10 w-[95%] md:w-[80%] max-w-6xl gap-3 sm:gap-4 overflow-auto aspect-auto"
       >
         {/* Records area scaled proportionally; preserve vertical flow */}
         <div className="flex flex-col gap-4" style={{ transform: `scale(${scale})`, transformOrigin: "top left" }}>
         {/* 에피1 */}
         <div className="flex items-center gap-2 sm:gap-4">
           <h2 className="text-xl sm:text-2xl font-bold w-20 sm:w-24">에피1</h2>
-          <div className="flex gap-1 sm:gap-2 w-32 sm:w-40">
+          <div className="flex gap-1 sm:gap-2 w-40 sm:w-48">
             {combo1Images.cookie1 && (
               <Image src={combo1Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 sm:w-12 sm:h-12" />
             )}
@@ -358,7 +360,7 @@ export default function Home() {
             type="text"
             value={score1}
             onChange={(e) => setScore1(e.target.value)}
-            className="w-32 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
+            className="w-48 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
             placeholder="점수"
           />
           <button
@@ -378,7 +380,7 @@ export default function Home() {
         {/* 에피2 */}
         <div className="flex items-center gap-2 sm:gap-4">
           <h2 className="text-xl sm:text-2xl font-bold w-20 sm:w-24">에피2</h2>
-          <div className="flex gap-1 sm:gap-2 w-32 sm:w-40">
+          <div className="flex gap-1 sm:gap-2 w-40 sm:w-48">
             {combo2Images.cookie1 && (
               <Image src={combo2Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 sm:w-12 sm:h-12" />
             )}
@@ -394,7 +396,7 @@ export default function Home() {
             type="text"
             value={score2}
             onChange={(e) => setScore2(e.target.value)}
-            className="w-32 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
+            className="w-48 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
             placeholder="점수"
           />
           <button
@@ -414,7 +416,7 @@ export default function Home() {
         {/* 에피3 */}
         <div className="flex items-center gap-2 sm:gap-4">
           <h2 className="text-xl sm:text-2xl font-bold w-20 sm:w-24">에피3</h2>
-          <div className="flex gap-1 sm:gap-2 w-32 sm:w-40">
+          <div className="flex gap-1 sm:gap-2 w-40 sm:w-48">
             {combo3Images.cookie1 && (
               <Image src={combo3Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 sm:w-12 sm:h-12" />
             )}
@@ -430,7 +432,7 @@ export default function Home() {
             type="text"
             value={score3}
             onChange={(e) => setScore3(e.target.value)}
-            className="w-32 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
+            className="w-48 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
             placeholder="점수"
           />
           <button
@@ -450,7 +452,7 @@ export default function Home() {
         {/* 에피4 */}
         <div className="flex items-center gap-2 sm:gap-4">
           <h2 className="text-xl sm:text-2xl font-bold w-20 sm:w-24">에피4</h2>
-          <div className="flex gap-1 sm:gap-2 w-32 sm:w-40">
+          <div className="flex gap-1 sm:gap-2 w-40 sm:w-48">
             {combo4Images.cookie1 && (
               <Image src={combo4Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 sm:w-12 sm:h-12" />
             )}
@@ -466,7 +468,7 @@ export default function Home() {
             type="text"
             value={score4}
             onChange={(e) => setScore4(e.target.value)}
-            className="w-32 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
+            className="w-48 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
             placeholder="점수"
           />
           <button
@@ -486,7 +488,7 @@ export default function Home() {
         {/* 에피5 */}
         <div className="flex items-center gap-2 sm:gap-4">
           <h2 className="text-xl sm:text-2xl font-bold w-20 sm:w-24">에피5</h2>
-          <div className="flex gap-1 sm:gap-2 w-32 sm:w-40">
+          <div className="flex gap-1 sm:gap-2 w-40 sm:w-48">
             {combo5Images.cookie1 && (
               <Image src={combo5Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 sm:w-12 sm:h-12" />
             )}
@@ -502,7 +504,7 @@ export default function Home() {
             type="text"
             value={score5}
             onChange={(e) => setScore5(e.target.value)}
-            className="w-32 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
+            className="w-48 sm:w-120 px-3 sm:px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-lg sm:text-xl"
             placeholder="점수"
           />
           <button
@@ -558,13 +560,13 @@ export default function Home() {
         {/* 점수 합산 */}
         <div className="flex items-center gap-2 sm:gap-4 mt-4 sm:mt-6 pt-4 sm:pt-6 border-t-2 border-gray-600">
           <h2 className="text-xl sm:text-2xl font-bold w-20 sm:w-24">합산</h2>
-          <div className="flex gap-1 sm:gap-2 w-32 sm:w-40"></div>
+          <div className="flex gap-1 sm:gap-2 w-40 sm:w-48"></div>
           <div className="flex-1"></div>
           <input
             type="text"
             value={totalScore}
             readOnly
-            className="w-40 sm:w-120 px-3 sm:px-4 py-2 bg-gray-800 text-white rounded border-2 border-green-500 focus:outline-none text-center text-lg sm:text-xl font-bold"
+            className="w-56 sm:w-120 px-3 sm:px-4 py-2 bg-gray-800 text-white rounded border-2 border-green-500 focus:outline-none text-center text-lg sm:text-xl font-bold"
             placeholder="점수"
           />
           <button
