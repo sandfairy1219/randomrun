@@ -184,97 +184,80 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-[#1d1d1d] text-gray-200 py-8 transition-colors flex flex-col items-center gap-10">
-      <h1 className="text-4xl font-bold text-center">
+    <div className="min-h-screen bg-[#1d1d1d] text-gray-200 py-4 md:py-8 transition-colors flex flex-col items-center gap-6 md:gap-10 px-2">
+      <h1 className="text-2xl md:text-4xl font-bold text-center">
         쿠키런 랜덤런 뽑기툴
       </h1>
-      <div className="flex justify-center items-center gap-10 border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl min-h-[400px]" id="container">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-10 border-2 md:border-4 border-gray-200 rounded-[20px] p-4 md:p-10 w-[95%] md:w-[80%] max-w-6xl" id="container">
 
         {/* 선달 슬롯 */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="text-xl font-bold">선달</div>
-          <div id="cookieimg1" className="w-32 h-32 rounded-lg flex items-center justify-center overflow-hidden">
+        <div className="flex flex-col items-center gap-2 md:gap-4 w-full md:w-auto">
+          <div className="text-lg md:text-xl font-bold">선달</div>
+          <div id="cookieimg1" className="w-24 h-24 md:w-32 md:h-32 rounded-lg flex items-center justify-center overflow-hidden">
             {cookieimg1.endsWith('.webp') ? (
               <Image src={cookieimg1} alt="쿠키 이미지" width={128} height={128} className="w-full h-full object-contain" unoptimized />
             ) : (
               <span>{cookieimg1}</span>
             )}
           </div>
-          <div id="cookiename1" className="text-xl font-bold text-center">{cookieName1}</div>
-          <button onClick={handleRandomCookie1} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded hover:shadow-lg transition-colors cursor-pointer">
+          <div id="cookiename1" className="text-sm md:text-xl font-bold text-center">{cookieName1}</div>
+          <button onClick={handleRandomCookie1} className="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-3 md:py-2 md:px-4 rounded hover:shadow-lg transition-colors cursor-pointer text-sm md:text-base">
             뽑기
           </button>
         </div>
 
         {/* 이달 슬롯 */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="text-xl font-bold">이달</div>
-          <div id="cookieimg2" className="w-32 h-32 rounded-lg flex items-center justify-center overflow-hidden">
+        <div className="flex flex-col items-center gap-2 md:gap-4 w-full md:w-auto">
+          <div className="text-lg md:text-xl font-bold">이달</div>
+          <div id="cookieimg2" className="w-24 h-24 md:w-32 md:h-32 rounded-lg flex items-center justify-center overflow-hidden">
             {cookieimg2.endsWith('.webp') ? (
               <Image src={cookieimg2} alt="쿠키 이미지" width={128} height={128} className="w-full h-full object-contain" unoptimized />
             ) : (
               <span>{cookieimg2}</span>
             )}
           </div>
-          <div id="cookiename2" className="text-xl font-bold text-center">{cookieName2}</div>
-          <button onClick={handleRandomCookie2} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded hover:shadow-lg transition-colors cursor-pointer">
+          <div id="cookiename2" className="text-sm md:text-xl font-bold text-center">{cookieName2}</div>
+          <button onClick={handleRandomCookie2} className="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-3 md:py-2 md:px-4 rounded hover:shadow-lg transition-colors cursor-pointer text-sm md:text-base">
             뽑기
           </button>
         </div>
 
         {/* 펫 슬롯 */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="text-xl font-bold">펫</div>
-          <div id="petimg" className="w-32 h-32 rounded-lg flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2 md:gap-4 w-full md:w-auto">
+          <div className="text-lg md:text-xl font-bold">펫</div>
+          <div id="petimg" className="w-24 h-24 md:w-32 md:h-32 rounded-lg flex items-center justify-center">
             {petimg.endsWith('.webp') ? (
               <Image src={petimg} alt="펫 이미지" width={128} height={128} className="w-full h-full object-contain" unoptimized priority />
             ) : (
               <span>{petimg}</span>
             )}
           </div>
-          <div id="petname" className="text-xl font-bold text-center">{petName}</div>
-          <button onClick={handleRandomPet} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded hover:shadow-lg transition-colors cursor-pointer">
+          <div id="petname" className="text-sm md:text-xl font-bold text-center">{petName}</div>
+          <button onClick={handleRandomPet} className="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-3 md:py-2 md:px-4 rounded hover:shadow-lg transition-colors cursor-pointer text-sm md:text-base">
             뽑기
           </button>
         </div>
 
         {/* 에피소드 슬롯 */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="text-xl font-bold">에피소드</div>
-          <div id="episodeimg" className="w-32 h-32  rounded-lg flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2 md:gap-4 w-full md:w-auto">
+          <div className="text-lg md:text-xl font-bold">에피소드</div>
+          <div id="episodeimg" className="w-24 h-24 md:w-32 md:h-32 rounded-lg flex items-center justify-center">
             {episodeimg.endsWith('.webp') ? (
               <Image src={episodeimg} alt="에피소드 이미지" width={96} height={96} className="object-contain" style={{ width: "auto", height: "auto" }} unoptimized />
             ) : (
               <span>{episodeimg}</span>
             )}
           </div>
-          <div id="episodename" className="text-xl font-bold text-center">{episodeName}</div>
-          <button onClick={handleRandomEpisode} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded hover:shadow-lg transition-colors cursor-pointer">
+          <div id="episodename" className="text-sm md:text-xl font-bold text-center">{episodeName}</div>
+          <button onClick={handleRandomEpisode} className="bg-blue-500 hover:bg-blue-600 text-white py-1.5 px-3 md:py-2 md:px-4 rounded hover:shadow-lg transition-colors cursor-pointer text-sm md:text-base">
             뽑기
           </button>
         </div>
 
         {/* 리롤 카운터 */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex items-center gap-4">
-            <label htmlFor="rerollInput" className="text-xl font-bold">리롤 횟수:</label>
-            <input
-              id="rerollInput"
-              type="number"
-              value={inputReroll}
-              onChange={(e) => {
-                setInputReroll(e.target.value);
-                const num = parseInt(e.target.value);
-                if (!isNaN(num) && num >= 0) {
-                  setRerollCount(num);
-                }
-              }}
-              className="w-24 px-3 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500"
-              min="0"
-            />
-          </div>
-          <div className="flex items-center gap-4">
-            <label htmlFor="remainingRerollInput" className="text-xl font-bold text-blue-400">남은 리롤:</label>
+        <div className="flex flex-col items-center gap-2 md:gap-4 w-full md:w-auto">
+          <div className="flex items-center gap-2 md:gap-4">
+            <label htmlFor="remainingRerollInput" className="text-sm md:text-xl font-bold text-blue-400">남은 리롤:</label>
             <input
               id="remainingRerollInput"
               type="number"
@@ -286,19 +269,19 @@ export default function Home() {
                   setInputReroll(e.target.value);
                 }
               }}
-              className="w-24 px-3 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center font-bold text-xl"
+              className="w-16 md:w-24 px-2 md:px-3 py-1.5 md:py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center font-bold text-lg md:text-xl"
               min="0"
             />
           </div>
           <button
             onClick={handleReset}
-            className="mt-4 bg-red-500 hover:bg-red-600 text-white py-3 px-8 rounded-lg hover:shadow-lg transition-colors cursor-pointer font-bold text-lg"
+            className="mt-2 md:mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-6 md:py-3 md:px-8 rounded-lg hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-lg w-full md:w-auto"
           >
             초기화
           </button>
           <button
             onClick={handleSwap}
-            className="mt-2 bg-green-500 hover:bg-green-600 text-white py-3 px-8 rounded-lg hover:shadow-lg transition-colors cursor-pointer font-bold text-lg"
+            className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 md:py-3 md:px-8 rounded-lg hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-lg w-full md:w-auto"
           >
             선/이달 교체
           </button>
@@ -306,245 +289,252 @@ export default function Home() {
       </div>
 
       {/* 기록창 */}
-      <div className="flex flex-col border-4 border-gray-200 rounded-[20px] p-10 w-[80%] max-w-6xl gap-4">
+      <div className="flex flex-col border-2 md:border-4 border-gray-200 rounded-[20px] p-4 md:p-10 w-[95%] md:w-[80%] max-w-6xl gap-3 md:gap-4">
         {/* 에피1 */}
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold w-24">에피1</h2>
-          <div className="flex gap-2 w-40">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+          <h2 className="text-lg md:text-2xl font-bold w-16 md:w-24">에피1</h2>
+          <div className="flex gap-1 md:gap-2 w-32 md:w-40">
             {combo1Images.cookie1 && (
-              <Image src={combo1Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo1Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo1Images.pet && (
-              <Image src={combo1Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo1Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo1Images.cookie2 && (
-              <Image src={combo1Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo1Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1 hidden md:block"></div>
           <input
             type="text"
             value={score1}
             onChange={(e) => setScore1(e.target.value)}
-            className="w-120 px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-xl"
+            className="w-full md:w-32 px-3 md:px-4 py-1.5 md:py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-base md:text-xl"
             placeholder="점수"
           />
-          <button
-            onClick={() => saveCombo(1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            조합 저장
-          </button>
-          <button
-            onClick={() => deleteCombo(1)}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            삭제
-          </button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={() => saveCombo(1)}
+              className="flex-1 md:flex-none bg-blue-500 hover:bg-blue-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              저장
+            </button>
+            <button
+              onClick={() => deleteCombo(1)}
+              className="flex-1 md:flex-none bg-red-500 hover:bg-red-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              삭제
+            </button>
+          </div>
         </div>
 
         {/* 에피2 */}
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold w-24">에피2</h2>
-          <div className="flex gap-2 w-40">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+          <h2 className="text-lg md:text-2xl font-bold w-16 md:w-24">에피2</h2>
+          <div className="flex gap-1 md:gap-2 w-32 md:w-40">
             {combo2Images.cookie1 && (
-              <Image src={combo2Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo2Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo2Images.pet && (
-              <Image src={combo2Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo2Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo2Images.cookie2 && (
-              <Image src={combo2Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo2Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1 hidden md:block"></div>
           <input
             type="text"
             value={score2}
             onChange={(e) => setScore2(e.target.value)}
-            className="w-120 px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-xl"
+            className="w-full md:w-32 px-3 md:px-4 py-1.5 md:py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-base md:text-xl"
             placeholder="점수"
           />
-          <button
-            onClick={() => saveCombo(2)}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            조합 저장
-          </button>
-          <button
-            onClick={() => deleteCombo(2)}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            삭제
-          </button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={() => saveCombo(2)}
+              className="flex-1 md:flex-none bg-blue-500 hover:bg-blue-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              저장
+            </button>
+            <button
+              onClick={() => deleteCombo(2)}
+              className="flex-1 md:flex-none bg-red-500 hover:bg-red-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              삭제
+            </button>
+          </div>
         </div>
 
         {/* 에피3 */}
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold w-24">에피3</h2>
-          <div className="flex gap-2 w-40">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+          <h2 className="text-lg md:text-2xl font-bold w-16 md:w-24">에피3</h2>
+          <div className="flex gap-1 md:gap-2 w-32 md:w-40">
             {combo3Images.cookie1 && (
-              <Image src={combo3Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo3Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo3Images.pet && (
-              <Image src={combo3Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo3Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo3Images.cookie2 && (
-              <Image src={combo3Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo3Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1 hidden md:block"></div>
           <input
             type="text"
             value={score3}
             onChange={(e) => setScore3(e.target.value)}
-            className="w-120 px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-xl"
+            className="w-full md:w-32 px-3 md:px-4 py-1.5 md:py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-base md:text-xl"
             placeholder="점수"
           />
-          <button
-            onClick={() => saveCombo(3)}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            조합 저장
-          </button>
-          <button
-            onClick={() => deleteCombo(3)}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            삭제
-          </button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={() => saveCombo(3)}
+              className="flex-1 md:flex-none bg-blue-500 hover:bg-blue-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              저장
+            </button>
+            <button
+              onClick={() => deleteCombo(3)}
+              className="flex-1 md:flex-none bg-red-500 hover:bg-red-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              삭제
+            </button>
+          </div>
         </div>
 
         {/* 에피4 */}
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold w-24">에피4</h2>
-          <div className="flex gap-2 w-40">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+          <h2 className="text-lg md:text-2xl font-bold w-16 md:w-24">에피4</h2>
+          <div className="flex gap-1 md:gap-2 w-32 md:w-40">
             {combo4Images.cookie1 && (
-              <Image src={combo4Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo4Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo4Images.pet && (
-              <Image src={combo4Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo4Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo4Images.cookie2 && (
-              <Image src={combo4Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo4Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1 hidden md:block"></div>
           <input
             type="text"
             value={score4}
             onChange={(e) => setScore4(e.target.value)}
-            className="w-120 px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-xl"
+            className="w-full md:w-32 px-3 md:px-4 py-1.5 md:py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-base md:text-xl"
             placeholder="점수"
           />
-          <button
-            onClick={() => saveCombo(4)}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            조합 저장
-          </button>
-          <button
-            onClick={() => deleteCombo(4)}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            삭제
-          </button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={() => saveCombo(4)}
+              className="flex-1 md:flex-none bg-blue-500 hover:bg-blue-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              저장
+            </button>
+            <button
+              onClick={() => deleteCombo(4)}
+              className="flex-1 md:flex-none bg-red-500 hover:bg-red-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              삭제
+            </button>
+          </div>
         </div>
 
         {/* 에피5 */}
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold w-24">에피5</h2>
-          <div className="flex gap-2 w-40">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+          <h2 className="text-lg md:text-2xl font-bold w-16 md:w-24">에피5</h2>
+          <div className="flex gap-1 md:gap-2 w-32 md:w-40">
             {combo5Images.cookie1 && (
-              <Image src={combo5Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo5Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo5Images.pet && (
-              <Image src={combo5Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo5Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo5Images.cookie2 && (
-              <Image src={combo5Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo5Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1 hidden md:block"></div>
           <input
             type="text"
             value={score5}
             onChange={(e) => setScore5(e.target.value)}
-            className="w-120 px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-xl"
+            className="w-full md:w-32 px-3 md:px-4 py-1.5 md:py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-base md:text-xl"
             placeholder="점수"
           />
-          <button
-            onClick={() => saveCombo(5)}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            조합 저장
-          </button>
-          <button
-            onClick={() => deleteCombo(5)}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            삭제
-          </button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={() => saveCombo(5)}
+              className="flex-1 md:flex-none bg-blue-500 hover:bg-blue-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              저장
+            </button>
+            <button
+              onClick={() => deleteCombo(5)}
+              className="flex-1 md:flex-none bg-red-500 hover:bg-red-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              삭제
+            </button>
+          </div>
         </div>
 
         {/* 스엪 */}
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold w-24">스엪</h2>
-          <div className="flex gap-2 w-40">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+          <h2 className="text-lg md:text-2xl font-bold w-16 md:w-24">스엪</h2>
+          <div className="flex gap-1 md:gap-2 w-32 md:w-40">
             {combo6Images.cookie1 && (
-              <Image src={combo6Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo6Images.cookie1} alt="선달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo6Images.pet && (
-              <Image src={combo6Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo6Images.pet} alt="펫" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
             {combo6Images.cookie2 && (
-              <Image src={combo6Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-12 h-12" />
+              <Image src={combo6Images.cookie2} alt="이달" width={48} height={48} className="rounded object-contain w-10 h-10 md:w-12 md:h-12" />
             )}
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1 hidden md:block"></div>
           <input
             type="text"
             value={score6}
             onChange={(e) => setScore6(e.target.value)}
-            className="w-120 px-4 py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-xl"
+            className="w-full md:w-32 px-3 md:px-4 py-1.5 md:py-2 bg-gray-700 text-white rounded border border-gray-500 focus:outline-none focus:border-blue-500 text-center text-base md:text-xl"
             placeholder="점수"
           />
-          <button
-            onClick={() => saveCombo(6)}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            조합 저장
-          </button>
-          <button
-            onClick={() => deleteCombo(6)}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
-          >
-            삭제
-          </button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <button
+              onClick={() => saveCombo(6)}
+              className="flex-1 md:flex-none bg-blue-500 hover:bg-blue-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              저장
+            </button>
+            <button
+              onClick={() => deleteCombo(6)}
+              className="flex-1 md:flex-none bg-red-500 hover:bg-red-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
+            >
+              삭제
+            </button>
+          </div>
         </div>
 
         {/* 점수 합산 */}
-        <div className="flex items-center gap-4 mt-6 pt-6 border-t-2 border-gray-600">
-          <h2 className="text-2xl font-bold w-24">합산</h2>
-          <div className="flex gap-2 w-40"></div>
-          <div className="flex-1"></div>
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 mt-4 md:mt-6 pt-4 md:pt-6 border-t-2 border-gray-600">
+          <h2 className="text-lg md:text-2xl font-bold w-16 md:w-24">합산</h2>
+          <div className="flex gap-1 md:gap-2 w-32 md:w-40"></div>
+          <div className="flex-1 hidden md:block"></div>
           <input
             type="text"
             value={totalScore}
             readOnly
-            className="w-120 px-4 py-2 bg-gray-800 text-white rounded border-2 border-green-500 focus:outline-none text-center text-xl font-bold"
+            className="w-full md:w-32 px-3 md:px-4 py-1.5 md:py-2 bg-gray-800 text-white rounded border-2 border-green-500 focus:outline-none text-center text-base md:text-xl font-bold"
             placeholder="점수"
           />
           <button
             onClick={calculateTotalScore}
-            className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold"
+            className="w-full md:w-auto bg-green-500 hover:bg-green-600 text-white py-1.5 md:py-2 px-4 md:px-6 rounded hover:shadow-lg transition-colors cursor-pointer font-bold text-sm md:text-base"
           >
             점수 합산
-          </button>
-          <button
-            className="bg-red-500 text-white py-2 px-6 rounded font-bold invisible"
-          >
-            삭제
           </button>
         </div>
       </div>
