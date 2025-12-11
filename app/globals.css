@@ -15,3 +15,10 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Responsive base scaling for mobile: increase overall size */
+@media (max-width: 640px) {
+  html {
+    font-size: 18px;
+  }
+}

@@ -1,7 +1,8 @@
 "use client"
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { randomcookie1, randomcookie2, randompet, randomepisode } from "./function";
+import { randomcookie1, randomcookie2, randomcookie1ByTier, randomcookie2ByTier, randompet, randompetByTier, randomepisode } from "./function";
 
 export default function Home() {
   // Proportional scaling: keep PC layout, shrink uniformly on smaller screens
@@ -51,6 +52,14 @@ export default function Home() {
   const [rerollCount, setRerollCount] = useState(30);
   const [inputReroll, setInputReroll] = useState("30");
 
+  // 쿠키 등급 필터 설정
+  type CookieTier = 'C' | 'B' | 'A' | 'S' | 'SS' | 'L';
+  const [cookieTierFilter, setCookieTierFilter] = useState<'all' | 'exclude-cba' | 'L-only'>('all');
+
+  // 펫 등급 필터 설정
+  type PetTier = 'C' | 'B' | 'A' | 'S' | 'E';
+  const [petTierFilter, setPetTierFilter] = useState<'all' | 'S-and-above'>('all');
+
   // 각 에피소드별 조합 이미지 저장 (선달, 펫, 이달)
   const [combo1Images, setCombo1Images] = useState({ cookie1: "", pet: "", cookie2: "" });
   const [combo2Images, setCombo2Images] = useState({ cookie1: "", pet: "", cookie2: "" });
@@ -72,7 +81,19 @@ export default function Home() {
 
 
   const handleRandomCookie1 = () => {
-    const cookieData = randomcookie2(cookieNumber2); // 이달 번호 제외
+    let cookieData;
+    
+    if (cookieTierFilter === 'exclude-cba') {
+      // C, B, A 제외 (S, SS, L만)
+      cookieData = randomcookie1ByTier(['S', 'SS', 'L']);
+    } else if (cookieTierFilter === 'L-only') {
+      // L급만
+      cookieData = randomcookie1ByTier(['L']);
+    } else {
+      // 전체
+      cookieData = randomcookie1();
+    }
+    
     setCookieName1(cookieData.name);
     setCookieNumber1(cookieData.number);
     const imgPath = `/img/cookie/${cookieData.number}.webp`;
@@ -84,7 +105,19 @@ export default function Home() {
   };
 
   const handleRandomCookie2 = () => {
-    const cookieData = randomcookie2(cookieNumber1); // 선달 번호 제외
+    let cookieData;
+    
+    if (cookieTierFilter === 'exclude-cba') {
+      // C, B, A 제외 (S, SS, L만)
+      cookieData = randomcookie2ByTier(cookieNumber1, ['S', 'SS', 'L']);
+    } else if (cookieTierFilter === 'L-only') {
+      // L급만
+      cookieData = randomcookie2ByTier(cookieNumber1, ['L']);
+    } else {
+      // 전체
+      cookieData = randomcookie2(cookieNumber1);
+    }
+    
     setCookieName2(cookieData.name);
     setCookieNumber2(cookieData.number);
     const imgPath = `/img/cookie/${cookieData.number}.webp`;
@@ -96,7 +129,16 @@ export default function Home() {
   };
 
   const handleRandomPet = () => {
-    const petData = randompet();
+    let petData;
+    
+    if (petTierFilter === 'S-and-above') {
+      // S급 이상 (S, E 포함)
+      petData = randompetByTier(['S', 'E', 'L']);
+    } else {
+      // 전체
+      petData = randompet();
+    }
+    
     const imgPath = `/img/pet/${petData.number}.webp`;
     
     // 이미지 프리로드
@@ -215,9 +257,88 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#1d1d1d] text-gray-200 py-6 sm:py-8 transition-colors flex flex-col items-center gap-6 sm:gap-10">
-      <h1 className="text-2xl sm:text-4xl font-bold text-center">
-        쿠키런 랜덤런 뽑기툴
-      </h1>
+      <div className="relative w-full max-w-6xl px-4 sm:px-6 flex justify-center items-center">
+        <h1 className="text-2xl sm:text-4xl font-bold text-center">
+          쿠키런 랜덤런 뽑기툴
+        </h1>
+        <Link
+          href="/patch-notes"
+          className="absolute right-4 sm:right-6 px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white text-[10px] sm:text-xs rounded transition-colors whitespace-nowrap"
+        >
+          패치 노트
+        </Link>
+      </div>
+      
+      {/* 등급 필터 선택 */}
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-6 bg-gray-800 px-4 sm:px-6 py-4 rounded-lg border-2 border-gray-600">
+        {/* 쿠키 필터 */}
+        <div className="flex items-center gap-3 sm:gap-6">
+          <span className="text-base sm:text-xl font-bold text-blue-400 whitespace-nowrap">쿠키:</span>
+          <div className="flex gap-2 sm:gap-3">
+          <button
+            onClick={() => setCookieTierFilter('all')}
+            className={`px-3 sm:px-5 py-2 rounded-lg font-bold text-xs sm:text-base transition-colors whitespace-nowrap ${
+              cookieTierFilter === 'all'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            전체
+          </button>
+          <button
+            onClick={() => setCookieTierFilter('exclude-cba')}
+            className={`px-3 sm:px-5 py-2 rounded-lg font-bold text-xs sm:text-base transition-colors whitespace-nowrap ${
+              cookieTierFilter === 'exclude-cba'
+                ? 'bg-purple-500 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            S급 이상
+          </button>
+          <button
+            onClick={() => setCookieTierFilter('L-only')}
+            className={`px-3 sm:px-5 py-2 rounded-lg font-bold text-xs sm:text-base transition-colors whitespace-nowrap ${
+              cookieTierFilter === 'L-only'
+                ? 'bg-yellow-500 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            L급만
+          </button>
+        </div>
+        </div>
+
+        {/* 구분선 */}
+        <div className="hidden sm:block w-px h-8 bg-gray-600"></div>
+
+        {/* 펫 필터 */}
+        <div className="flex items-center gap-3 sm:gap-6">
+          <span className="text-base sm:text-xl font-bold text-green-400 whitespace-nowrap">펫:</span>
+          <div className="flex gap-2 sm:gap-3">
+          <button
+            onClick={() => setPetTierFilter('all')}
+            className={`px-3 sm:px-5 py-2 rounded-lg font-bold text-xs sm:text-base transition-colors whitespace-nowrap ${
+              petTierFilter === 'all'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            전체
+          </button>
+          <button
+            onClick={() => setPetTierFilter('S-and-above')}
+            className={`px-3 sm:px-5 py-2 rounded-lg font-bold text-xs sm:text-base transition-colors whitespace-nowrap ${
+              petTierFilter === 'S-and-above'
+                ? 'bg-purple-500 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            S급 이상
+          </button>
+        </div>
+        </div>
+      </div>
+
       <div
         className="flex justify-center items-center gap-6 sm:gap-10 border-2 sm:border-4 border-gray-200 rounded-[12px] sm:rounded-[20px] p-5 sm:p-10 w-[95%] sm:w-[80%] max-w-6xl overflow-hidden aspect-[16/9]"
         id="container"
