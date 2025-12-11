@@ -263,7 +263,7 @@ export default function Home() {
         </h1>
         <Link
           href="/patch-notes"
-          className="absolute right-4 sm:right-6 px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white text-[10px] sm:text-xs rounded transition-colors whitespace-nowrap"
+          className="absolute top-0 right-0 px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white text-[10px] sm:text-xs rounded transition-colors whitespace-nowrap"
         >
           패치 노트
         </Link>
