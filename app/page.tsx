@@ -166,6 +166,7 @@ export default function Home() {
     setCookieNumber1(null);
     setCookieName2("이달 미정");
     setCookieimg2("/img/cookie/0.webp");
+    setCookieNumber2(null);
     setPetName("펫 미정");
     setPetimg("/img/pet/0.webp");
     setEpisodeName("에피소드 미정");
