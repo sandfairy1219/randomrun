@@ -12,6 +12,15 @@ export default function PatchNotes() {
 
         <div className="space-y-6">
           <div className="bg-gray-800 rounded-lg p-6 border-2 border-gray-700">
+            <p className="text-gray-500 mb-4">2025-12-12</p>
+            <ul className="space-y-2 text-gray-300">
+              <li>• 선/이달 교체시 쿠키 중복 수정</li>
+            </ul>
+          </div>
+
+
+
+          <div className="bg-gray-800 rounded-lg p-6 border-2 border-gray-700">
             <p className="text-gray-500 mb-4">2025-12-11</p>
             <ul className="space-y-2 text-gray-300">
               <li>• 쿠키 등급별 필터 기능 추가</li>
