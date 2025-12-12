@@ -85,13 +85,13 @@ export default function Home() {
     
     if (cookieTierFilter === 'exclude-cba') {
       // C, B, A 제외 (S, SS, L만)
-      cookieData = randomcookie1ByTier(['S', 'SS', 'L']);
+      cookieData = randomcookie1ByTier(['S', 'SS', 'L'], cookieNumber2);
     } else if (cookieTierFilter === 'L-only') {
       // L급만
-      cookieData = randomcookie1ByTier(['L']);
+      cookieData = randomcookie1ByTier(['L'], cookieNumber2);
     } else {
       // 전체
-      cookieData = randomcookie1();
+      cookieData = randomcookie1(cookieNumber2);
     }
     
     setCookieName1(cookieData.name);

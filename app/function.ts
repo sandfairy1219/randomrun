@@ -88,18 +88,26 @@ const cookieData: Record<number, { name: string, tier: CookieTier }> = {
     83: { name: "망개떡맛 쿠키", tier: 'S' },
 };
 
-export function randomcookie1(): { name: string, number: number, tier: CookieTier } {
-    const randomcookie = Math.floor(Math.random() * 84); // 0 to 83
+export function randomcookie1(excludedNumber2: number | null = null): { name: string, number: number, tier: CookieTier } {
+    let randomcookie: number;
+    do {
+        randomcookie = Math.floor(Math.random() * 84); // 0 to 83
+    } while (excludedNumber2 !== null && randomcookie === excludedNumber2);
+    
     const cookie = cookieData[randomcookie];
     console.log(randomcookie);
     console.log(cookie.name);
     return { name: cookie.name, number: randomcookie, tier: cookie.tier };
 }
 
-// 등급별 쿠키 뽑기 (선달용)
-export function randomcookie1ByTier(allowedTiers: CookieTier[]): { name: string, number: number, tier: CookieTier } {
+// 등급별 쿠키 뽑기 (선달용, 이달 제외)
+export function randomcookie1ByTier(allowedTiers: CookieTier[], excludedNumber2: number | null = null): { name: string, number: number, tier: CookieTier } {
     const availableCookies = Object.entries(cookieData)
-        .filter(([_, data]) => allowedTiers.includes(data.tier))
+        .filter(([num, data]) => {
+            const cookieNum = parseInt(num);
+            return allowedTiers.includes(data.tier) && 
+                   (excludedNumber2 === null || cookieNum !== excludedNumber2);
+        })
         .map(([num, _]) => parseInt(num));
     
     if (availableCookies.length === 0) {
