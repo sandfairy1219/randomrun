@@ -180,10 +180,11 @@ export default function Home() {
 
     setCookieName1(cookieName2);
     setCookieimg1(cookieimg2);
-    setCookieNumber1(null); // 이달 숫자는 추적 안 하므로 null
+    setCookieNumber1(cookieNumber2); // 이달 쿠키 번호를 선달로 설정
 
     setCookieName2(tempName);
     setCookieimg2(tempImg);
+    setCookieNumber2(tempNumber); // 원래 선달 번호를 이달로 설정
   };
 
   const saveCombo = (slotNumber: number) => {
